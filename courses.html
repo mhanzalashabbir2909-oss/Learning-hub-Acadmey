@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numbers Past Papers | LearnHub</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📘</text></svg>">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+ <!-- HEADER / NAVBAR -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+               
+                <span> 📘LearnHub</span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('render_html_template', template_name='courses') }}">Courses</a></li>
+                <li><a href="#Contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Resources</h1>
+        <div class="O-btn-center">
+            <a href="olevel-courses.html">
+                <button class="slide-btn">O level</button>
+            </a>
+        </div>
+        <div class="A-btn-center">
+            <a href="alevel-courses.html">
+                <button class="slide-btn">A level</button>
+            </a>
+        </div>
+    </main>
+
+    <!-- ===== Contact Section ===== -->
+    <section id="Contact" class="Contact">
+        <h1>Email</h1>
+        <p>learninghubb1222@gmail.com</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer more-down">
+        © 2026 LearnHub Academy | All Rights Reserved
+    </footer>
+</body>
+</html>

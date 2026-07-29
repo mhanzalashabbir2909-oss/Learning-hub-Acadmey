@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History | LearnHub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📘</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Center all download buttons */
+        .download-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .download-section button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- HEADER / NAVBAR -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <span>📘 LearnHub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="{{ url_for('render_html_template', template_name='courses') }}">Courses</a></li>
+                <li><a href="#Contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+<section class="pdf-container">
+            <h2>Section 3 7 Mark Questions</h2>
+            <iframe 
+                    src="https://drive.google.com/file/d/1H0AaXuW3ijJQbemahERbfEbT6NW8drPX/preview"
+                    class="pdf-viewer"
+                title="Section 3 7 Mark Questions"
+                width="80%" height="700">
+            </iframe>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1H0AaXuW3ijJQbemahERbfEbT6NW8drPX">
+                    <button type="button">Download </button>
+                </a>
+            </div>
+        </section>

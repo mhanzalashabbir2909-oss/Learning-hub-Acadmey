@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accounting Extra Notes | LearnHub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📘</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .download-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .download-section button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <span>📘 LearnHub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="{{ url_for('render_html_template', template_name='courses') }}">Courses</a></li>
+                <li><a href="#Contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="center">
+        <section class="pdf-container">
+            <h2>Accounting Extra Notes</h2>
+            
+            <iframe 
+                src="https://drive.google.com/file/d/1Xfzoh8MZo2_og7rPmwpN9BfZJ6sg1zXo/preview"
+                class="pdf-viewer"
+                title="Accounting Extra Notes"
+                width="70%" height="500">
+            </iframe>
+            <div class="download-section">
+                <a href="https://drive.google.com/uc?export=download&id=1Xfzoh8MZo2_og7rPmwpN9BfZJ6sg1zXo">
+                    <button type="button">Download Extra Notes</button>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer more-down">
+        © 2026 LearnHub Academy | All Rights Reserved
+    </footer>
+</body>
+</html>

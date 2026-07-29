@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnHub Academy | Courses</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📘</text></svg>">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+         
+            <span>📘LearnHub</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="#Contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- ===== Page Heading ===== -->
+<section class="about courses-about">
+    <h1>Our Resources</h1>
+    <p>
+        Explore our wide range of notes designed to help students
+        learn effectively and achieve academic success.
+    </p>
+</section>
+
+<!-- ===== Courses Section ===== -->
+<section class="courses-container">
+
+    <div class="course-card">
+        <h3>Mathematics</h3>
+        <p>Strengthen your concepts and master problem-solving techniques.</p>
+        <a href="maths.html">
+            <button class="btn">View Resources Now</button>
+            
+        </a>
+    </div>
+
+    <div class="course-card">
+        <h3>Accounting</h3>
+        <p>accounting provides essential skills for personal finance.</p>
+        <a href="accounting.html">
+            <button>View Resources Now</button>
+        </a>
+    </div>
+
+    <div class="course-card">
+        <h3>Computer Science</h3>
+        <p>Understand programming, algorithms, and modern technologies.</p>
+        <a href="Computer_Science.html">
+        <button>View Resources Now</button>
+        </a>
+    </div>
+
+    <div class="course-card">
+        <h3>Economics</h3>
+        <p>economics helps you understand how the world works.</p>
+        <a href="Economics.html">
+        <button>View Resources Now</button>
+        </a>
+    </div>
+    
+
+</section>
+
+
+ 
+<body>
+    
+    <!-- ===== Contact Section ===== -->
+<section id="Contact" class="Contact">
+    <h1>Email</h1>
+    <p>learninghubb1222@gmail.com</p>
+
+    {% if username %}
+        <p class="logged-in-message">Logged in as <strong>{{ username | e }}</strong></p>
+        <h1>How can we improve?</h1>
+        <textarea id="feedback" placeholder="Enter your feedback here..."></textarea>
+        <button onclick="handleSubmitFeedback(event)">Submit Feedback</button>
+    {% else %}
+        <h1>How can we improve?</h1>
+        <p>Please <a href="/signin?next=/alevel-courses.html">sign in</a> to leave feedback. Once you are signed in, your name will appear with your comment.</p>
+    {% endif %}
+</section>
+<section id="public-feedback" class="public-feedback">
+    <h2>Public Feedback</h2>
+    <div id="feedback-list">
+        {% if feedbacks %}
+            <ul class="feedback-items">
+                {% for entry in feedbacks %}
+                    <li><strong>{{ entry.username | default('Guest') | e }}:</strong> {{ entry.feedback | e }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No feedback yet. Be the first to share your thoughts!</p>
+        {% endif %}
+    </div>
+</section>
+
+<script>
+function handleSubmitFeedback(event) {
+    event.preventDefault();
+    const feedbackText = document.getElementById('feedback').value;
+    if (feedbackText.trim() === '') {
+        alert('Please enter your feedback');
+        return;
+    }
+    fetch('/submit_feedback', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({feedback: feedbackText, course: 'alevel'})
+    }).then(response => {
+        if (!response.ok) {
+            return response.json().then(data => {
+                const error = data.error || 'Unable to submit feedback.';
+                if (response.status === 401) {
+                    window.location.href = '/signin?next=/alevel-courses.html';
+                }
+                throw new Error(error);
+            });
+        }
+        return response.json();
+    })
+      .then(data => {
+          alert('Thank you for your feedback!');
+          document.getElementById('feedback').value = '';
+          addFeedbackToList(feedbackText.trim());
+      })
+      .catch(error => {
+          console.error('Error:', error);
+          if (error.message !== 'Unable to submit feedback.') {
+              alert(error.message || 'Error submitting feedback.');
+          }
+      });
+}
+
+function addFeedbackToList(feedbackText) {
+    const feedbackList = document.getElementById('feedback-list');
+    if (!feedbackList) {
+        return;
+    }
+
+    const noFeedbackMessage = feedbackList.querySelector('p');
+    if (noFeedbackMessage) {
+        noFeedbackMessage.remove();
+    }
+
+    let list = feedbackList.querySelector('.feedback-items');
+    if (!list) {
+        list = document.createElement('ul');
+        list.className = 'feedback-items';
+        feedbackList.appendChild(list);
+    }
+
+    const item = document.createElement('li');
+    const usernameTextElement = document.querySelector('.logged-in-message strong');
+    const usernameText = usernameTextElement ? usernameTextElement.textContent : 'You';
+    const strong = document.createElement('strong');
+    strong.textContent = usernameText + ':';
+    item.appendChild(strong);
+    item.appendChild(document.createTextNode(' ' + feedbackText));
+    list.appendChild(item);
+}
+</script>
+
+<!-- ===== Footer ===== -->
+<footer class="more-down">    © 2026 LearnHub Academy | All Rights Reserved
+</footer>
+
+
+
+</body>
+</html>
